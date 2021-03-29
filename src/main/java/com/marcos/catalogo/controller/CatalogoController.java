@@ -1,5 +1,6 @@
 package com.marcos.catalogo.controller;
 
+import java.math.BigInteger;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -55,7 +56,7 @@ public class CatalogoController {
         return "redirect:/musicas";
     }
 
-    @RequestMapping(value = "/exluir/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/excluir/{id}", method = RequestMethod.GET)
     public String getExcluirMusicas(@PathVariable("id") long id) {
         catalogoService.excluir(id);
         return "redirect:/musicas";

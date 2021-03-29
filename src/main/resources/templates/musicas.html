@@ -33,8 +33,8 @@
                         </a>
                         <span th:utext="${musica.titulo}"> </span> </h4> </a>
                         <p class="card-text"> <span th:utext="${#strings.abbreviate(musica.letra, 200)} "></span></p>
-                        <button class="btn btn-sm btn-primary">Alterar</button>
-                        <button class="btn btn-sm btn-danger" href="/">Excluir</button>
+                        <a class="btn btn-sm btn-primary">Alterar</a>
+                        <a class="btn btn-sm btn-danger" th:href="${(#mvc.url('CC#getExcluirMusicas').arg(0, musica.id)).build()}">Excluir</a>
                     </div>
                 </div>
             </div>

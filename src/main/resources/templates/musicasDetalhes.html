@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://thymeleaf.org">
 <head>
-    <meta charset='utf-8'>    
+    <meta charset='utf-8'>
     <title>Detalhes da Musica</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">      
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
-    
+
 </head>
 <body>
    <header>
@@ -14,26 +14,29 @@
         <span class="navbar-brand mb-0 h1" style="font-weight: bold;">
         <a href="/musicas"> Catalogo de Músicas </a></span>
     </nav>
-   </header> 
+   </header>
 
    <main>
     <div class="container" style="width: 60%; padding-bottom: 30px;">
-        <article>        
+        <article>
             <h1 class="card-title" style="font-weight: bold; margin-bottom: 20px;"><span th:text="${musica.titulo}" ></span> </h1>
-                <p class="card-subtitle mb-2 text-muted">    
+                <a class="btn btn-sm btn-primary">Alterar</a>
+                <a class="btn btn-sm btn-danger" th:href="${(#mvc.url('CC#getExcluirMusicas').arg(0, musica.id)).build()}">Excluir</a>
+                <hr>
+                <p class="card-subtitle mb-2 text-muted">
                     <i class="material-icons">person_outline</i>
                     <span th:text="${musica.autor}"></span>
                     <br>
                     <i class="material-icons">date_range</i>
-                    <span th:text="${musica.data}"></span>                       
-                </p>           
+                    <span th:text="${musica.data}"></span>
+                </p>
                 <section>
                     <p class="card-text" style="margin-top: 40px;">
                     <span th:utext="${musica.letra}"></span></p>
-                </section>                               
+                </section>
         </article>
-    </div>    
-</main>   
+    </div>
+</main>
 
 </body>
 </html>
