@@ -14,7 +14,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Table(name = "TB_MUSICA")
-public class Musica {
+public class Music {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

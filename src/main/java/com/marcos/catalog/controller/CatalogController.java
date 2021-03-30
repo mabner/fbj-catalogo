@@ -5,8 +5,8 @@ import java.util.List;
 
 import javax.validation.Valid;
 
-import com.marcos.catalogo.model.Musica;
-import com.marcos.catalogo.service.CatalogoService;
+import com.marcos.catalogo.model.Music;
+import com.marcos.catalogo.service.CatalogService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,23 +19,24 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 @Controller
-public class CatalogoController {
+public class CatalogController {
 
-    @Autowired CatalogoService catalogoService;
+    @Autowired
+    CatalogService catalogService;
 
     @RequestMapping(value="/musicas", method=RequestMethod.GET)
     public ModelAndView getMusicas() {
        ModelAndView mv = new ModelAndView("musicas");
-        List<Musica> musicas = catalogoService.findAll();
-        mv.addObject("musicas", musicas);
+        List<Music> music = catalogService.findAll();
+        mv.addObject("musicas", music);
         return  mv;
     }
 
     @RequestMapping(value="/musicas/{id}", method=RequestMethod.GET)
     public ModelAndView getMusicasDetalhes(@PathVariable("id") long id) {
        ModelAndView mv = new ModelAndView("musicasDetalhes");
-        Musica musica = catalogoService.findById(id);
-        mv.addObject("musica", musica);
+        Music music = catalogService.findById(id);
+        mv.addObject("musica", music);
         return  mv;
     }
 
@@ -45,19 +46,19 @@ public class CatalogoController {
     }
 
     @RequestMapping(value="/addMusica", method=RequestMethod.POST)
-    public String salvarMusica(@Valid Musica musica, BindingResult result, RedirectAttributes attributes) {
+    public String salvarMusica(@Valid Music music, BindingResult result, RedirectAttributes attributes) {
         if (result.hasErrors()) {
             attributes.addFlashAttribute("mensagem", "Campos obrigatórios não preechidos!");
             return "redirect:/addMusica";
         }
-        musica.setData(LocalDate.now());
-        catalogoService.save(musica);
+        music.setData(LocalDate.now());
+        catalogService.save(music);
         return "redirect:/musicas";
     }
 
     @RequestMapping(value = "/excluir/{id}", method = RequestMethod.GET)
     public String getExcluirMusicas(@PathVariable("id") long id) {
-        catalogoService.excluir(id);
+        catalogService.delete(id);
         return "redirect:/musicas";
     }
 

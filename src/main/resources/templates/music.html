@@ -14,27 +14,27 @@
             <!-- As a heading -->
             <nav class="navbar navbar-light bg-light">
                 <span class="navbar-brand mb-0 h1" style="font-weight: bold;">
-                    <a href="/musicas"> Catalogo de Músicas </a></span>
+                    <a href="/music"> Catalogo de Músicas </a></span>
                 <a href="/addMusica" class="btn btn-primary" role="button">Adicionar</a>
             </nav>
         </header>
 
         <section>
             <div class="container" style="width: 60%; padding-bottom: 30px;">
-                <div class="card" style="margin-top: 20px;" th:each="musica : ${musicas}">
+                <div class="card" style="margin-top: 20px;" th:each="music : ${music}">
                     <div class="card-body">
                         <p class="card-subtitle mb-2 text-muted">
-                            <span th:text="${musica.autor}"></span>
-                            <span th:text="${musica.data}"></span>
+                            <span th:text="${music.autor}"></span>
+                            <span th:text="${music.data}"></span>
                         </p>
-                        <a th:href="${(#mvc.url('CC#getMusicasDetalhes').arg(0, musica.id)).build()}">
+                        <a th:href="${(#mvc.url('CC#getMusicasDetalhes').arg(0, music.id)).build()}">
                             <h4 class="card-title" style="font-weight: bold; color: black; padding-top: 5px;"><span
-                                    th:text="${musica.titulo}"></span> </h4>
+                                    th:text="${music.titulo}"></span> </h4>
                         </a>
-                        <span th:utext="${musica.titulo}"> </span> </h4> </a>
-                        <p class="card-text"> <span th:utext="${#strings.abbreviate(musica.letra, 200)} "></span></p>
+                        <span th:utext="${music.titulo}"> </span> </h4> </a>
+                        <p class="card-text"> <span th:utext="${#strings.abbreviate(music.letra, 200)} "></span></p>
                         <a class="btn btn-sm btn-primary">Alterar</a>
-                        <a class="btn btn-sm btn-danger" th:href="${(#mvc.url('CC#getExcluirMusicas').arg(0, musica.id)).build()}">Excluir</a>
+                        <a class="btn btn-sm btn-danger" th:href="${(#mvc.url('CC#getExcluirMusicas').arg(0, music.id)).build()}">Excluir</a>
                     </div>
                 </div>
             </div>

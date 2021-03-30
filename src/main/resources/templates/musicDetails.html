@@ -12,27 +12,27 @@
        <!-- As a heading -->
     <nav class="navbar navbar-light bg-light">
         <span class="navbar-brand mb-0 h1" style="font-weight: bold;">
-        <a href="/musicas"> Catalogo de Músicas </a></span>
+        <a href="/music"> Catalogo de Músicas </a></span>
     </nav>
    </header>
 
    <main>
     <div class="container" style="width: 60%; padding-bottom: 30px;">
         <article>
-            <h1 class="card-title" style="font-weight: bold; margin-bottom: 20px;"><span th:text="${musica.titulo}" ></span> </h1>
+            <h1 class="card-title" style="font-weight: bold; margin-bottom: 20px;"><span th:text="${music.titulo}" ></span> </h1>
                 <a class="btn btn-sm btn-primary">Alterar</a>
-                <a class="btn btn-sm btn-danger" th:href="${(#mvc.url('CC#getExcluirMusicas').arg(0, musica.id)).build()}">Excluir</a>
+                <a class="btn btn-sm btn-danger" th:href="${(#mvc.url('CC#getExcluirMusicas').arg(0, music.id)).build()}">Excluir</a>
                 <hr>
                 <p class="card-subtitle mb-2 text-muted">
                     <i class="material-icons">person_outline</i>
-                    <span th:text="${musica.autor}"></span>
+                    <span th:text="${music.autor}"></span>
                     <br>
                     <i class="material-icons">date_range</i>
-                    <span th:text="${musica.data}"></span>
+                    <span th:text="${music.data}"></span>
                 </p>
                 <section>
                     <p class="card-text" style="margin-top: 40px;">
-                    <span th:utext="${musica.letra}"></span></p>
+                    <span th:utext="${music.letra}"></span></p>
                 </section>
         </article>
     </div>
