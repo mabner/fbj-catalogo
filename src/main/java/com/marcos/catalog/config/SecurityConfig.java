@@ -1,4 +1,4 @@
-package com.marcos.catalogo.config;
+package com.marcos.catalog.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -14,8 +14,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
     
     private static final String[] AUTH_LIST = {
         "/",
-        "/musicas",
-        "/musicas/{id}"
+        "/music",
+        "/music/{id}"
     };
 
     @Override

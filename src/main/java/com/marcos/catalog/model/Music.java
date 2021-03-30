@@ -1,4 +1,4 @@
-package com.marcos.catalogo.model;
+package com.marcos.catalog.model;
 
 import java.time.LocalDate;
 
@@ -13,7 +13,7 @@ import javax.validation.constraints.NotBlank;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
-@Table(name = "TB_MUSICA")
+@Table(name = "TB_MUSIC")
 public class Music {
     
     @Id
@@ -21,17 +21,17 @@ public class Music {
     private Long id;
 
     @NotBlank
-    private String autor;
+    private String author;
 
     @NotBlank
-    private String titulo;
+    private String title;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss", locale = "UTC-03")
-    private LocalDate data;
+    private LocalDate date;
 
     @NotBlank
     @Lob
-    private String letra;
+    private String lyrics;
 
     public Long getId() {
         return id;
@@ -41,36 +41,36 @@ public class Music {
         this.id = id;
     }
 
-    public String getAutor() {
-        return autor;
+    public String getAuthor() {
+        return author;
     }
 
-    public void setAutor(String autor) {
-        this.autor = autor;
+    public void setAuthor(String author) {
+        this.author = author;
     }
 
-    public String getTitulo() {
-        return titulo;
+    public String getTitle() {
+        return title;
     }
 
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public LocalDate getData() {
-        return data;
+    public LocalDate getDate() {
+        return date;
     }
 
-    public void setData(LocalDate data) {
-        this.data = data;
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 
-    public String getLetra() {
-        return letra;
+    public String getLyrics() {
+        return lyrics;
     }
 
-    public void setLetra(String letra) {
-        this.letra = letra;
+    public void setLyrics(String lyrics) {
+        this.lyrics = lyrics;
     }
 
     

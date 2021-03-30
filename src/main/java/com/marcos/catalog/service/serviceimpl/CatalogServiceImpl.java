@@ -1,10 +1,10 @@
-package com.marcos.catalogo.service.serviceimpl;
+package com.marcos.catalog.service.serviceimpl;
 
 import java.util.List;
 
-import com.marcos.catalogo.model.Music;
-import com.marcos.catalogo.respository.CatalogRepository;
-import com.marcos.catalogo.service.CatalogService;
+import com.marcos.catalog.model.Music;
+import com.marcos.catalog.respository.CatalogRepository;
+import com.marcos.catalog.service.CatalogService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,4 +1,4 @@
-package com.marcos.catalogo;
+package com.marcos.catalog;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

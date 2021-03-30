@@ -1,4 +1,4 @@
-package com.marcos.catalogo;
+package com.marcos.catalog;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

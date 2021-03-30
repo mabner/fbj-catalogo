@@ -1,45 +1,46 @@
 <!DOCTYPE html>
 <html xmlns:th="http://thymeleaf.org">
 
-    <head>
-        <meta charset='utf-8'>
-        <title>Catalogo Musical</title>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-            integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<head>
+    <meta charset='utf-8'>
+    <title>Catalogo Musical</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
-    </head>
+</head>
 
-    <body>
-        <header>
-            <!-- As a heading -->
-            <nav class="navbar navbar-light bg-light">
+<body>
+<header>
+    <!-- As a heading -->
+    <nav class="navbar navbar-light bg-light">
                 <span class="navbar-brand mb-0 h1" style="font-weight: bold;">
                     <a href="/music"> Catalogo de Músicas </a></span>
-                <a href="/addMusica" class="btn btn-primary" role="button">Adicionar</a>
-            </nav>
-        </header>
+        <a href="/addMusic" class="btn btn-primary" role="button">Adicionar</a>
+    </nav>
+</header>
 
-        <section>
-            <div class="container" style="width: 60%; padding-bottom: 30px;">
-                <div class="card" style="margin-top: 20px;" th:each="music : ${music}">
-                    <div class="card-body">
-                        <p class="card-subtitle mb-2 text-muted">
-                            <span th:text="${music.autor}"></span>
-                            <span th:text="${music.data}"></span>
-                        </p>
-                        <a th:href="${(#mvc.url('CC#getMusicasDetalhes').arg(0, music.id)).build()}">
-                            <h4 class="card-title" style="font-weight: bold; color: black; padding-top: 5px;"><span
-                                    th:text="${music.titulo}"></span> </h4>
-                        </a>
-                        <span th:utext="${music.titulo}"> </span> </h4> </a>
-                        <p class="card-text"> <span th:utext="${#strings.abbreviate(music.letra, 200)} "></span></p>
-                        <a class="btn btn-sm btn-primary">Alterar</a>
-                        <a class="btn btn-sm btn-danger" th:href="${(#mvc.url('CC#getExcluirMusicas').arg(0, music.id)).build()}">Excluir</a>
-                    </div>
-                </div>
+<section>
+    <div class="container" style="width: 60%; padding-bottom: 30px;">
+        <div class="card" style="margin-top: 20px;" th:each="music : ${music}">
+            <div class="card-body">
+                <p class="card-subtitle mb-2 text-muted">
+                    <span th:text="${music.author}"></span>
+                    <span th:text="${music.date}"></span>
+                </p>
+                <a th:href="${(#mvc.url('CC#getMusicDetails').arg(0, music.id)).build()}">
+                    <h4 class="card-title" style="font-weight: bold; color: black; padding-top: 5px;"><span
+                            th:text="${music.title}"></span></h4>
+                </a>
+                <span th:utext="${music.title}"> </span> </h4> </a>
+                <p class="card-text"><span th:utext="${#strings.abbreviate(music.lyrics, 200)} "></span></p>
+                <a class="btn btn-sm btn-primary">Alterar</a>
+                <a class="btn btn-sm btn-danger"
+                   th:href="${(#mvc.url('CC#getDeleteMusic').arg(0, music.id)).build()}">Excluir</a>
             </div>
-        </section>
+        </div>
+    </div>
+</section>
 
-    </body>
+</body>
 
 </html>

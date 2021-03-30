@@ -1,12 +1,12 @@
-package com.marcos.catalogo.controller;
+package com.marcos.catalog.controller;
 
 import java.time.LocalDate;
 import java.util.List;
 
 import javax.validation.Valid;
 
-import com.marcos.catalogo.model.Music;
-import com.marcos.catalogo.service.CatalogService;
+import com.marcos.catalog.model.Music;
+import com.marcos.catalog.service.CatalogService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,42 +24,42 @@ public class CatalogController {
     @Autowired
     CatalogService catalogService;
 
-    @RequestMapping(value="/musicas", method=RequestMethod.GET)
-    public ModelAndView getMusicas() {
-       ModelAndView mv = new ModelAndView("musicas");
+    @RequestMapping(value="/music", method=RequestMethod.GET)
+    public ModelAndView getMusic() {
+       ModelAndView mv = new ModelAndView("music");
         List<Music> music = catalogService.findAll();
-        mv.addObject("musicas", music);
+        mv.addObject("music", music);
         return  mv;
     }
 
-    @RequestMapping(value="/musicas/{id}", method=RequestMethod.GET)
-    public ModelAndView getMusicasDetalhes(@PathVariable("id") long id) {
-       ModelAndView mv = new ModelAndView("musicasDetalhes");
+    @RequestMapping(value="/music/{id}", method=RequestMethod.GET)
+    public ModelAndView getMusicDetails(@PathVariable("id") long id) {
+       ModelAndView mv = new ModelAndView("musicDetails");
         Music music = catalogService.findById(id);
-        mv.addObject("musica", music);
+        mv.addObject("music", music);
         return  mv;
     }
 
-    @RequestMapping(value="/addMusica", method=RequestMethod.GET)
+    @RequestMapping(value="/addMusic", method=RequestMethod.GET)
     public String getForm() {
-        return "musicaForm";
+        return "musicForm";
     }
 
-    @RequestMapping(value="/addMusica", method=RequestMethod.POST)
-    public String salvarMusica(@Valid Music music, BindingResult result, RedirectAttributes attributes) {
+    @RequestMapping(value="/addMusic", method=RequestMethod.POST)
+    public String saveMusic(@Valid Music music, BindingResult result, RedirectAttributes attributes) {
         if (result.hasErrors()) {
-            attributes.addFlashAttribute("mensagem", "Campos obrigatórios não preechidos!");
-            return "redirect:/addMusica";
+            attributes.addFlashAttribute("message", "Please fill in the required fields!");
+            return "redirect:/addMusic";
         }
-        music.setData(LocalDate.now());
+        music.setDate(LocalDate.now());
         catalogService.save(music);
-        return "redirect:/musicas";
+        return "redirect:/music";
     }
 
-    @RequestMapping(value = "/excluir/{id}", method = RequestMethod.GET)
-    public String getExcluirMusicas(@PathVariable("id") long id) {
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+    public String getDeleteMusic(@PathVariable("id") long id) {
         catalogService.delete(id);
-        return "redirect:/musicas";
+        return "redirect:/music";
     }
 
 

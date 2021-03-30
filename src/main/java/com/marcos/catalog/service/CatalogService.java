@@ -1,8 +1,8 @@
-package com.marcos.catalogo.service;
+package com.marcos.catalog.service;
 
 import java.util.List;
 
-import com.marcos.catalogo.model.Music;
+import com.marcos.catalog.model.Music;
 
 
 public interface CatalogService {
