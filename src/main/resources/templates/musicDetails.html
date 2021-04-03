@@ -33,7 +33,9 @@
 					>
 						<span th:text="${music.title}"></span>
 					</h1>
-					<a class="btn btn-sm btn-primary">Alterar</a>
+					<a class="btn btn-sm btn-primary"
+                    	th:href="${(#mvc.url('CC#getEditMusic').arg(0, music.id)).build()}"
+						>Alterar</a>
 					<a
 						class="btn btn-sm btn-danger"
 						th:href="${(#mvc.url('CC#getDeleteMusic').arg(0, music.id)).build()}"

@@ -24,22 +24,25 @@ public class CatalogController {
     @Autowired
     CatalogService catalogService;
 
+    // *** List all ***
     @RequestMapping(value="/music", method=RequestMethod.GET)
     public ModelAndView getMusic() {
-       ModelAndView mv = new ModelAndView("music");
+        ModelAndView mv = new ModelAndView("music");
         List<Music> music = catalogService.findAll();
         mv.addObject("music", music);
-        return  mv;
+        return mv;
     }
 
+    // *** Lista specific ***
     @RequestMapping(value="/music/{id}", method=RequestMethod.GET)
     public ModelAndView getMusicDetails(@PathVariable("id") long id) {
-       ModelAndView mv = new ModelAndView("musicDetails");
+        ModelAndView mv = new ModelAndView("musicDetails");
         Music music = catalogService.findById(id);
         mv.addObject("music", music);
-        return  mv;
+        return mv;
     }
 
+    // *** Add music ***
     @RequestMapping(value="/addMusic", method=RequestMethod.GET)
     public String getForm() {
         return "musicForm";
@@ -48,7 +51,7 @@ public class CatalogController {
     @RequestMapping(value="/addMusic", method=RequestMethod.POST)
     public String saveMusic(@Valid Music music, BindingResult result, RedirectAttributes attributes) {
         if (result.hasErrors()) {
-            attributes.addFlashAttribute("message", "Please fill in the required fields!");
+            attributes.addFlashAttribute("message", "Favor preencher os campos obrigatórios!");
             return "redirect:/addMusic";
         }
         music.setDate(LocalDate.now());
@@ -56,6 +59,28 @@ public class CatalogController {
         return "redirect:/music";
     }
 
+    // *** Edit music ***
+    @RequestMapping(value = "/editMusic/{id}", method = RequestMethod.GET)
+    public ModelAndView getEditMusic(@PathVariable("id") long id) {
+        ModelAndView mv = new ModelAndView("editMusic");
+        Music music = catalogService.findById(id);
+        mv.addObject("music", music);
+        return mv;
+    }
+
+    @RequestMapping(value="/editMusic", method=RequestMethod.POST)
+    public String editMusic(@PathVariable("id") long id, @Valid Music music, BindingResult result, RedirectAttributes attributes) {
+        if (result.hasErrors()) {
+            attributes.addFlashAttribute("message", "Favor preencher os campos obrigatórios!");
+            return "redirect:/editMusic/" + id;
+        }
+        music.setId(id);
+        music.setDate(LocalDate.now());
+        catalogService.save(music);
+        return "redirect:/music";
+    }
+
+    // *** Delete music ***
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public String getDeleteMusic(@PathVariable("id") long id) {
         catalogService.delete(id);
