@@ -68,7 +68,7 @@ public class CatalogController {
         return mv;
     }
 
-    @RequestMapping(value="/editMusic", method=RequestMethod.POST)
+    @RequestMapping(value = "/editMusic/{id}", method = RequestMethod.POST)
     public String editMusic(@PathVariable("id") long id, @Valid Music music, BindingResult result, RedirectAttributes attributes) {
         if (result.hasErrors()) {
             attributes.addFlashAttribute("message", "Favor preencher os campos obrigatórios!");
